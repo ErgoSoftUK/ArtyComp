@@ -1,0 +1,80 @@
+<div style="padding: 16px">
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap="16px grid"
+    fxLayoutAlign="flex-start">
+
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(33% - 16px)">
+      <mat-label>Battery X (4 Digit)</mat-label>
+      <input matInput [(ngModel)]="locx" type="number" (change)="calculateRangeBearingAlt()">
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(33% - 16px)">
+      <mat-label>Battery Y (4 Digit)</mat-label>
+      <input matInput [(ngModel)]="locy" type="number" (change)="calculateRangeBearingAlt()">
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(33% - 16px)">
+      <mat-label>Battery Alt. (m)</mat-label>
+      <input matInput [(ngModel)]="locz" type="number" (change)="calculateRangeBearingAlt()">
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(33% - 16px)">
+      <mat-label>Target X (4 Digit)</mat-label>
+      <input matInput [(ngModel)]="tgtx" type="number" (change)="calculateRangeBearingAlt()">
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(33% - 16px)">
+      <mat-label>Target Y (4 Digit)</mat-label>
+      <input matInput [(ngModel)]="tgty" type="number" (change)="calculateRangeBearingAlt()">
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(33% - 16px)">
+      <mat-label>Target Alt. (m)</mat-label>
+      <input matInput [(ngModel)]="tgtz" type="number" (change)="calculateRangeBearingAlt()">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(50% - 16px)" mat-readonly>
+      <mat-label>Bearing (East)</mat-label>
+      <input matInput [value]="bearingEast" type="number" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(50% - 16px)" mat-readonly>
+      <mat-label>Bearing (West)</mat-label>
+      <input matInput [value]="bearingWest" type="number" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(50% - 16px)">
+      <mat-label>Range (m)</mat-label>
+      <input matInput [(ngModel)]="range" type="number" (change)="calculateEleEta()">
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(50% - 16px)">
+      <mat-label>Alt. diff (m)</mat-label>
+      <input matInput [(ngModel)]="altDiff" type="number" (change)="calculateEleEta()">
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(50% - 16px)">
+      <mat-label>Battery</mat-label>
+      <mat-select [(ngModel)]="battery" (selectionChange)="calculateEleEta()">
+        <mat-option *ngFor="let item of batteries" [value]="item">{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(16.67% - 16px)" fxFlex.lt-sm="calc(50% - 16px)">
+      <mat-label>Charge</mat-label>
+      <mat-select [(ngModel)]="charge" (selectionChange)="calculateEleEta()">
+        <mat-option *ngFor="let item of battery.charges" [value]="item">{{item.distance}} ({{item.range}})</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-divider fxFlex="100"></mat-divider>
+
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(25% - 16px)" fxFlex.lt-sm="calc(50% - 16px)" mat-readonly>
+      <mat-label>Ele High</mat-label>
+      <input matInput [value]="eleHigh" type="number" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(25% - 16px)" fxFlex.lt-sm="calc(50% - 16px)" mat-readonly>
+      <mat-label>ETA High (s)</mat-label>
+      <input matInput [value]="etaHigh" type="number" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(25% - 16px)" fxFlex.lt-sm="calc(50% - 16px)" mat-readonly>
+      <mat-label>Ele Low</mat-label>
+      <input matInput [value]="eleLow" type="number" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="1 1 calc(25% - 16px)" fxFlex.lt-sm="calc(50% - 16px)" mat-readonly>
+      <mat-label>ETA Low (s)</mat-label>
+      <input matInput [value]="etaLow" type="number" readonly>
+    </mat-form-field>
+  </div>
+</div>
